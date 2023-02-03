@@ -1,16 +1,19 @@
+import Navigation from "./Navigation";
+// import UserMenu from "./UserMenu";
+import LoginForm from './LoginForm';
+import RegisterForm from "./RegisterForm";
+import { Routes, Route } from 'react-router-dom';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<p>Welcome!</p>} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+      </Routes>
+      {/* <UserMenu /> */}
     </div>
   );
 };
