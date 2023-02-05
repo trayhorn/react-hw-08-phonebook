@@ -1,29 +1,41 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+// import * as React from 'react';
+import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/operations';
+import { useState } from 'react';
 
 const theme = createTheme();
 
 export default function RegisterForm() {
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'name':
+        return setName(value);
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
+    }
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(register({ name, email, password }));
+    setName('');
+    setEmail('');
+    setPassword('');
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,45 +62,40 @@ export default function RegisterForm() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
+                  // required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="Name"
+                  label="Name"
+                  name="name"
+                  value={name}
+                  onChange={handleChange}
                   autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  // required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
+                  value={email}
+                  onChange={handleChange}
                   autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  // required
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
+                  value={password}
+                  onChange={handleChange}
                   autoComplete="new-password"
                 />
               </Grid>
@@ -103,9 +110,7 @@ export default function RegisterForm() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Log in
-                </Link>
+                <NavLink to="/login">Already have an account? Log in</NavLink>
               </Grid>
             </Grid>
           </Box>

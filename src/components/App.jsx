@@ -9,7 +9,7 @@ export const App = () => {
     <div>
       <Navigation />
       <Routes>
-        <Route path="/" element={<p>Welcome!</p>} />
+        <Route path="/" element={<p style={{textAlign: 'center', fontSize: '40px'}}>Welcome!</p>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
       </Routes>
