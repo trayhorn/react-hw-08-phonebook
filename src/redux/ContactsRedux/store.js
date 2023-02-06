@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { AuthSlice } from './AuthSlice';
-import { phonebookApi } from './ContactsSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { phonebookApi } from '../ContactsSlice';
 
 export const store = configureStore({
   reducer: {
-    auth: AuthSlice.reducer,
     [phonebookApi.reducerPath]: phonebookApi.reducer,
   },
   middleware: getDefaultMiddleware => [

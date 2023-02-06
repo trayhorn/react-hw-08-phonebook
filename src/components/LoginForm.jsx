@@ -13,9 +13,9 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { login } from 'redux/operations';
+import { logIn } from 'redux/operations';
 import { useDispatch } from 'react-redux';
 
 const theme = createTheme();
@@ -24,6 +24,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -38,9 +39,10 @@ export default function LoginForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    dispatch(logIn({ email, password }));
     setEmail('');
     setPassword('');
+    navigate('/contacts', { replace: true });
   };
 
   return (
@@ -69,7 +71,7 @@ export default function LoginForm() {
           >
             <TextField
               margin="normal"
-              // required
+              required
               fullWidth
               id="email"
               label="Email Address"
@@ -80,7 +82,7 @@ export default function LoginForm() {
             />
             <TextField
               margin="normal"
-              // required
+              required
               fullWidth
               name="password"
               label="Password"

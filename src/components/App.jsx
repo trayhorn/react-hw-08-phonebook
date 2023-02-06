@@ -1,19 +1,24 @@
-import Navigation from "./Navigation";
-// import UserMenu from "./UserMenu";
+import Navigation from "./AppBar/Navigation";
+import { Routes, Route } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import RegisterForm from "./RegisterForm";
-import { Routes, Route } from 'react-router-dom';
+import AppPhonebook from "./Contacts/AppPhonebook";
 
 export const App = () => {
   return (
     <div>
       <Navigation />
       <Routes>
-        <Route path="/" element={<p style={{textAlign: 'center', fontSize: '40px'}}>Welcome!</p>} />
+        <Route
+          path="/"
+          element={
+            <p style={{ textAlign: 'center', fontSize: '40px' }}>Welcome!</p>
+          }
+        />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route path="/contacts" element={<AppPhonebook />} />
       </Routes>
-      {/* <UserMenu /> */}
     </div>
   );
 };
