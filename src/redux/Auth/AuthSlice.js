@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut } from './operations';
+import { register, logIn, logOut } from './AuthOperations';
 
 const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
 };
-
 
 export const AuthSlice = createSlice({
   name: 'phonebook',
@@ -23,12 +22,9 @@ export const AuthSlice = createSlice({
       state.isLoggedIn = true;
     },
     [logOut.fulfilled](state) {
-      state.user = {name: null, email: null};
+      state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
   },
 });
-
-
-

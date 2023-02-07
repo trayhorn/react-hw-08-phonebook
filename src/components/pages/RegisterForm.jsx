@@ -1,10 +1,19 @@
 // import * as React from 'react';
-import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container} from '@mui/material';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/operations';
+import { register } from 'redux/Auth/AuthOperations';
 import { useState } from 'react';
 
 const theme = createTheme();
@@ -35,7 +44,6 @@ export default function RegisterForm() {
     setEmail('');
     setPassword('');
   };
-
 
   return (
     <ThemeProvider theme={theme}>

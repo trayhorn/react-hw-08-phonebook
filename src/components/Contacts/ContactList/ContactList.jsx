@@ -2,7 +2,6 @@ import s from './ContactList.module.css';
 import Contact from './Contact/Contact';
 
 export default function ContactList({ visibleContacts }) {
-
   return (
     <section>
       <ul className={s.list}>

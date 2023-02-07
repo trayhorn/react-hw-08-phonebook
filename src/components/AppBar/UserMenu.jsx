@@ -1,9 +1,8 @@
 import { Typography, Button, Avatar } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from 'redux/operations';
-import { useNavigate } from 'react-router-dom';
-
+import { logOut } from 'redux/Auth/AuthOperations';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 export default function UserMenu() {
   const name = useSelector(state => state.auth.user.name);
@@ -13,7 +12,7 @@ export default function UserMenu() {
   const onLogOut = () => {
     dispatch(logOut());
     navigate('/login');
-  }
+  };
 
   return (
     <>
@@ -29,7 +28,12 @@ export default function UserMenu() {
       >
         Welcome, {name}!
       </Typography>
-      <Button color="inherit" onClick={() => onLogOut()}>Logout</Button>
+      <NavLink to="/contacts" className="navlink">
+        <Button color="inherit">Contacts</Button>
+      </NavLink>
+      <Button color="inherit" onClick={() => onLogOut()}>
+        Logout
+      </Button>
     </>
   );
 }

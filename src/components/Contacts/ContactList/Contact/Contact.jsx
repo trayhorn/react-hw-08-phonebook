@@ -1,10 +1,11 @@
+import { useDispatch } from 'react-redux';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useDeleteContactMutation } from 'redux/ContactsSlice';
+import { deleteContactApi } from 'redux/Contacts/ContactsSlice';
 import s from '../ContactList.module.css';
 
 export default function Contact({ id, name, phone }) {
-  const [deleteContact, { isLoading }] = useDeleteContactMutation();
+  const dispatch = useDispatch();
 
   return (
     <li className={s.contactItem}>
@@ -12,8 +13,7 @@ export default function Contact({ id, name, phone }) {
       <span>{phone}</span>
       <IconButton
         aria-label="delete"
-        disabled={isLoading}
-        onClick={() => deleteContact(id)}
+        onClick={() => dispatch(deleteContactApi(id))}
       >
         <DeleteIcon />
       </IconButton>

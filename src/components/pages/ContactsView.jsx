@@ -1,13 +1,23 @@
-import { useState } from 'react';
-import { useGetAllContactsQuery } from 'redux/ContactsSlice';
-import ContactList from './ContactList';
-import Filter from './Filter';
-import Form from './Form/Form';
-import './AppPhonebook.css';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAll } from 'redux/Contacts/ContactsOperations';
+import ContactList from '../Contacts/ContactList';
+import Form from '../Contacts/Form/Form';
+import Filter from '../Contacts/Filter';
+import '../../ContactsView.css';
 
-function AppPhonebook() {
+function ContactsView() {
   const [filter, setFilter] = useState('');
-  const { data: contacts } = useGetAllContactsQuery();
+  const contacts = useSelector(state => state.contacts.contacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAll());
+  }, [dispatch])
+
+  if (!contacts) {
+    return;
+  }
 
   const getFilterQuery = query => {
     setFilter(query);
@@ -19,10 +29,6 @@ function AppPhonebook() {
       contact.name.toLowerCase().includes(nomalizedFilter)
     );
   };
-
-  if (!contacts) {
-    return;
-  }
 
   const visibleContacts = getVisibleContacts();
 
@@ -37,4 +43,4 @@ function AppPhonebook() {
   );
 }
 
-export default AppPhonebook;
+export default ContactsView;
