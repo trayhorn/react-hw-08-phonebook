@@ -4,8 +4,16 @@ import LoginForm from './pages/LoginForm';
 import RegisterForm from './pages/RegisterForm';
 import ContactsView from './pages/ContactsView';
 import Home from './pages/Home';
+import { refreshUser } from 'redux/Auth/AuthOperations';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser())
+  }, [dispatch])
+
   return (
     <div>
       <Navigation />

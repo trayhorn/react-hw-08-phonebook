@@ -6,6 +6,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 
 export default function UserMenu() {
   const name = useSelector(state => state.auth.user.name);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ export default function UserMenu() {
       >
         Welcome, {name}!
       </Typography>
-      <NavLink to="/contacts" className="navlink">
+      <NavLink to='/contacts' className="navlink">
         <Button color="inherit">Contacts</Button>
       </NavLink>
       <Button color="inherit" onClick={() => onLogOut()}>
