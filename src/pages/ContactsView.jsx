@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAll } from 'redux/Contacts/ContactsOperations';
-import ContactList from '../Contacts/ContactList';
-import Form from '../Contacts/Form/Form';
-import Filter from '../Contacts/Filter';
-import '../../ContactsView.css';
+import ContactList from '../components/Contacts/ContactList';
+import Form from '../components/Contacts/Form';
+import Filter from '../components/Contacts/Filter';
 
 function ContactsView() {
   const [filter, setFilter] = useState('');
@@ -13,7 +12,7 @@ function ContactsView() {
 
   useEffect(() => {
     dispatch(fetchAll());
-  }, [dispatch])
+  }, [dispatch]);
 
   if (!contacts) {
     return;

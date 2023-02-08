@@ -1,9 +1,9 @@
 import Navigation from './components/AppBar/Navigation';
 import { Routes, Route } from 'react-router-dom';
-import LoginForm from './components/pages/LoginForm';
-import RegisterForm from './components/pages/RegisterForm';
-import ContactsView from './components/pages/ContactsView';
-import Home from './components/pages/Home';
+import LoginForm from './pages/LoginForm';
+import RegisterForm from './pages/RegisterForm';
+import ContactsView from './pages/ContactsView';
+import Home from './pages/Home';
 
 export const App = () => {
   return (
