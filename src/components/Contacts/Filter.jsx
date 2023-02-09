@@ -1,9 +1,6 @@
 import { TextField } from '@mui/material';
 
-export default function Filter({ onFilterChange, value }) {
-  const handleChange = e => {
-    onFilterChange(e.target.value);
-  };
+export default function Filter() {
 
   return (
     <div>
@@ -16,8 +13,6 @@ export default function Filter({ onFilterChange, value }) {
         variant="outlined"
         size="small"
         sx={{ marginTop: '20px' }}
-        onChange={handleChange}
-        value={value}
       />
     </div>
   );

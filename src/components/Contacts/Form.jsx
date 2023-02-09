@@ -1,5 +1,5 @@
 import { TextField, Button } from '@mui/material';
-import { addContactApi } from 'redux/Contacts/ContactsSlice';
+import { addContact } from 'redux/Contacts/ContactsOperations';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 
@@ -8,14 +8,15 @@ export default function Form() {
   const handleSubmit = async e => {
     e.preventDefault();
     const name = e.target.elements.name.value;
-    const phone = e.target.elements.number.value;
+    const number = e.target.elements.number.value;
     const contact = {
       id: nanoid(),
       name,
-      phone,
+      number,
     };
+    console.log(contact);
     try {
-      await dispatch(addContactApi(contact));
+      await dispatch(addContact(contact));
       e.target.reset();
     } catch (error) {
       console.log(error);

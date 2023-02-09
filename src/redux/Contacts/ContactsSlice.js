@@ -1,27 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  fetchAllContacts,
+  addContact,
+  deleteContact
+} from './ContactsOperations';
 
 export const ContactsSlice = createSlice({
-  name: 'phonebook',
+  name: 'contacts',
   initialState: {
     contacts: [],
   },
-  reducers: {
-    fetchContactsApi(state, action) {
+  extraReducers: {
+    [fetchAllContacts.fulfilled](state, action) {
       state.contacts = action.payload;
     },
-    addContactApi(state, action) {
+    [addContact.fulfilled](state, action) {
       state.contacts = [...state.contacts, action.payload];
     },
-    deleteContactApi(state, action) {
+    [deleteContact.fulfilled](state, action) {
       state.contacts = state.contacts.filter(
-        item => item.id !== action.payload.id
+        contact => contact.id !== action.payload
       );
     },
   },
 });
-
-export const {
-  fetchContactsApi,
-  addContactApi,
-  deleteContactApi,
-} = ContactsSlice.actions;
