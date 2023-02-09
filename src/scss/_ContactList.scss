@@ -1,5 +1,8 @@
 .contact-list {
-  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 50px;
   list-style: none;
   padding-left: 0;
 
@@ -7,9 +10,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 400px;
+    height: 60px;
+    font-size: 18px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 25px;
   }
-}
-
-.contact-list__item + .contact-list__item {
-  margin-top: 5px;
+  
 }
