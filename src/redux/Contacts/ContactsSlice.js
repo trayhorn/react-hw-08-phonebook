@@ -9,6 +9,7 @@ export const ContactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     contacts: [],
+    filter: ''
   },
   extraReducers: {
     [fetchAllContacts.fulfilled](state, action) {

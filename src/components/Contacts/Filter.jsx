@@ -2,6 +2,10 @@ import { TextField } from '@mui/material';
 
 export default function Filter() {
 
+  const handleFilterChange = e => {
+    console.log(e.target.value);
+  }
+
   return (
     <div>
       <TextField
@@ -12,7 +16,7 @@ export default function Filter() {
         label="Filter"
         variant="outlined"
         size="small"
-        sx={{ marginTop: '20px' }}
+        onChange={handleFilterChange}
       />
     </div>
   );
