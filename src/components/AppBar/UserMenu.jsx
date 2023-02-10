@@ -1,10 +1,4 @@
-import {
-  Typography,
-  Avatar,
-  IconButton,
-  Menu,
-  MenuItem,
-} from '@mui/material';
+import { Typography, Avatar, Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -40,41 +34,36 @@ export default function UserMenu() {
       >
         Welcome, {name}!
       </Typography>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
+      <Avatar
+        sx={{ bgcolor: 'secondary.main', cursor: 'pointer' }}
         aria-label="menu"
-        sx={{ mr: 2 }}
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
       >
-        <Avatar
-          sx={{ bgcolor: 'secondary.main' }}
-          aria-controls={open ? 'basic-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
-        >
-          <AccountCircleIcon fontSize="large" />
-        </Avatar>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            'aria-labelledby': 'basic-button',
-          }}
-        >
-          <NavLink to="/contacts" className="navlink">
-            <MenuItem sx={{ color: 'black' }} onClick={handleClose}>
-              Contacts
-            </MenuItem>
-          </NavLink>
-          <NavLink to="/login" className="navlink">
-            <MenuItem sx={{ color: 'black' }} onClick={onLogOut}>Logout</MenuItem>
-          </NavLink>
-        </Menu>
-      </IconButton>
+        <AccountCircleIcon fontSize="large" />
+      </Avatar>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <NavLink to="/contacts" className="navlink">
+          <MenuItem sx={{ color: 'black' }} onClick={handleClose}>
+            Contacts
+          </MenuItem>
+        </NavLink>
+        <NavLink to="/login" className="navlink">
+          <MenuItem sx={{ color: 'black' }} onClick={onLogOut}>
+            Logout
+          </MenuItem>
+        </NavLink>
+      </Menu>
     </>
   );
 }

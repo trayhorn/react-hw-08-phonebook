@@ -1,9 +1,11 @@
 import { TextField } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/Contacts/ContactsSlice';
 
 export default function Filter() {
-
+  const dispatch = useDispatch();
   const handleFilterChange = e => {
-    console.log(e.target.value);
+    dispatch(setFilter(e.target.value));
   }
 
   return (

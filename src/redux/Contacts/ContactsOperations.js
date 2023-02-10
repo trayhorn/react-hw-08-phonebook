@@ -30,3 +30,4 @@ export const deleteContact = createAsyncThunk('contacts/delete', async id => {
     //
   }
 })
+

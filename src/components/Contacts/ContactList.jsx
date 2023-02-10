@@ -3,15 +3,28 @@ import Contact from './Contact';
 
 export default function ContactList() {
   const contacts = useSelector(state => state.contacts.contacts)
+  const filter = useSelector(state => state.contacts.filter);
+
+  if (!contacts && !filter) {
+    return;
+  }
+
+  const getVisibleContacts = () => {
+    const nomalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(nomalizedFilter)
+    );
+  };
+
+  const visibleContacts = getVisibleContacts();
+
   return (
     <section>
-      {contacts && (
         <ul className="contact-list">
-          {contacts.map(({ id, name, number }) => (
+          {visibleContacts.map(({ id, name, number }) => (
             <Contact key={id} id={id} name={name} number={number} />
           ))}
         </ul>
-      )}
     </section>
   );
 }
