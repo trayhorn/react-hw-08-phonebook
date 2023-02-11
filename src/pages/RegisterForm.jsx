@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import {
   Avatar,
   Button,
@@ -14,35 +13,19 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/Auth/AuthOperations';
-import { useState } from 'react';
 
 const theme = createTheme();
 
 export default function RegisterForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'name':
-        return setName(value);
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
-    }
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
+    const name = e.currentTarget.elements.name.value;
+    const email = e.currentTarget.elements.email.value;
+    const password = e.currentTarget.elements.password.value;
     dispatch(register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+    e.currentTarget.reset();
   };
 
   return (
@@ -72,38 +55,32 @@ export default function RegisterForm() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  // required
+                  required
                   fullWidth
                   id="Name"
                   label="Name"
                   name="name"
-                  value={name}
-                  onChange={handleChange}
                   autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  // required
+                  required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
-                  value={email}
-                  onChange={handleChange}
                   autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  // required
+                  required
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
-                  value={password}
-                  onChange={handleChange}
                   autoComplete="new-password"
                 />
               </Grid>

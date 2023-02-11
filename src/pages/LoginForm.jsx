@@ -13,34 +13,21 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
-import { logIn } from 'redux/Auth/AuthOperations';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { logIn } from 'redux/Auth/AuthOperations';
 
 const theme = createTheme();
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
-    }
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
+    const email = e.currentTarget.elements.email.value;
+    const password = e.currentTarget.elements.password.value;
     dispatch(logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    e.currentTarget.reset();
   };
 
   return (
@@ -76,7 +63,6 @@ export default function LoginForm() {
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -87,7 +73,6 @@ export default function LoginForm() {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={handleChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
