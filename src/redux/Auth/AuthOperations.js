@@ -13,7 +13,9 @@ const token = {
 };
 
 
-export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/signup', credentials);
     token.set(data.token);
@@ -23,7 +25,9 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
   }
 });
 
-export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', credentials);
     token.set(data.token);
@@ -33,7 +37,9 @@ export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI
   }
 });
 
-export const logOut = createAsyncThunk('auth/logout', async (thunkAPI) => {
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (thunkAPI) => {
   try {
     await axios.post('/users/logout');
     token.unset();
@@ -47,7 +53,7 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    if (persistedToken === null) {
+    if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken)

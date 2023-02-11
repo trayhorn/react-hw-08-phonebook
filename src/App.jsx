@@ -7,6 +7,7 @@ import RegisterForm from './pages/RegisterForm';
 import ContactsView from './pages/ContactsView';
 import LoginForm from './pages/LoginForm';
 import Home from './pages/Home';
+import RestrictedRoute from 'RestrictedRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,12 @@ export const App = () => {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={LoginForm} />
+          }
+        />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/contacts" element={<ContactsView />} />
       </Routes>
