@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Form from 'components/Contacts/Form';
 import ContactsModal from 'components/Contacts/ContactsModal';
 
-function ContactsView() {
+export default function ContactsView() {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -43,4 +43,3 @@ function ContactsView() {
   );
 }
 
-export default ContactsView;

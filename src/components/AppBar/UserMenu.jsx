@@ -1,9 +1,9 @@
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Avatar, Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from 'redux/Auth/AuthOperations';
-import { NavLink } from 'react-router-dom';
 
 export default function UserMenu() {
   const name = useSelector(state => state.auth.user.name);
@@ -58,11 +58,9 @@ export default function UserMenu() {
             Contacts
           </MenuItem>
         </NavLink>
-        <NavLink to="/login" className="navlink">
-          <MenuItem sx={{ color: 'black' }} onClick={onLogOut}>
-            Logout
-          </MenuItem>
-        </NavLink>
+        <MenuItem sx={{ color: 'black' }} onClick={onLogOut}>
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );
