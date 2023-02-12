@@ -2,11 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { refreshUser } from 'redux/Auth/AuthOperations';
-import RegisterForm from './pages/RegisterForm';
-import ContactsView from './pages/ContactsView';
-import LoginForm from './pages/LoginForm';
-import Home from './pages/Home';
-import Layout from './pages/Layout';
+import { RegisterForm, ContactsView, LoginForm, Home, Layout } from './pages';
 import { RestrictedRoute } from 'RestrictedRoute';
 import PrivateRoute from 'PrivateRoute';
 
