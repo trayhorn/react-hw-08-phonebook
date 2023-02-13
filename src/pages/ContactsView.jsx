@@ -19,24 +19,22 @@ export default function ContactsView() {
     setIsModalOpen(prevState => !prevState);
   }
 
-  const handleModalClick = e => {
-    if (e.target.className === 'modal-backdrop') {
-      toggleModal();
-    }
-  }
-
   return (
     <div className="App">
+      {isModalOpen && (
+        <ContactsModal onClose={toggleModal}>
+          <Form onAddContact={toggleModal} />
+        </ContactsModal>
+      )}
       <section className="search-header">
         <Filter />
-        <Button sx={{marginLeft: '10px'}} onClick={toggleModal} variant="contained">
+        <Button
+          sx={{ marginLeft: '10px' }}
+          onClick={toggleModal}
+          variant="contained"
+        >
           Add contact
         </Button>
-        {isModalOpen && (
-          <ContactsModal handleModalClick={handleModalClick}>
-            <Form />
-          </ContactsModal>
-        )}
       </section>
       <ContactList />
     </div>

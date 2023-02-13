@@ -24,6 +24,7 @@ export const ContactsSlice = createSlice({
       state.contacts = [...state.contacts, action.payload];
     },
     [deleteContact.fulfilled](state, action) {
+      console.log(action.payload);
       state.contacts = state.contacts.filter(
         contact => contact.id !== action.payload
       );
