@@ -13,7 +13,7 @@ export default function Navigation() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   
   return (
-    <div>
+    <div style={{position: 'absolute', width: '100vw'}}>
       <Box>
         <AppBar position="static">
           <Toolbar>

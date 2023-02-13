@@ -22,7 +22,7 @@ export default function ContactList() {
     <section>
         <ul className="contact-list">
           {visibleContacts.map(({ id, name, number }) => (
-            <Contact key={id} id={id} name={name} number={number} />
+            <Contact key={id} name={name} number={number} />
           ))}
         </ul>
     </section>

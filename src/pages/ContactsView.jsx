@@ -20,7 +20,7 @@ export default function ContactsView() {
   }
 
   return (
-    <div className="App">
+    <div className="ContactsApp">
       {isModalOpen && (
         <ContactsModal onClose={toggleModal}>
           <Form onAddContact={toggleModal} />

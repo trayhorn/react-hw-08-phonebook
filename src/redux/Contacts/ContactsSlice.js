@@ -9,6 +9,7 @@ export const ContactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     contacts: [],
+    isDeleting: false,
     filter: ''
   },
   reducers: {
@@ -23,8 +24,11 @@ export const ContactsSlice = createSlice({
     [addContact.fulfilled](state, action) {
       state.contacts = [...state.contacts, action.payload];
     },
+    [deleteContact.pending](state) {
+      state.isDeleting = true;
+    },
     [deleteContact.fulfilled](state, action) {
-      console.log(action.payload);
+      state.isDeleting = false;
       state.contacts = state.contacts.filter(
         contact => contact.id !== action.payload
       );

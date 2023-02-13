@@ -11,12 +11,13 @@ export default function Filter() {
   return (
     <div>
       <TextField
+        sx={{ bgcolor: 'white' }}
         fullWidth
         autoComplete="off"
         name="filter"
-        id="outlined-basic"
+        id="filled"
         label="Filter"
-        variant="outlined"
+        variant="filled"
         size="small"
         onChange={handleFilterChange}
       />
