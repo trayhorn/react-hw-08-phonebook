@@ -12,21 +12,37 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
 import { register } from 'redux/Auth/AuthOperations';
+import * as yup from 'yup';
+
 
 const theme = createTheme();
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const name = e.currentTarget.elements.name.value;
-    const email = e.currentTarget.elements.email.value;
-    const password = e.currentTarget.elements.password.value;
-    dispatch(register({ name, email, password }));
-    e.currentTarget.reset();
-  };
+  const registerSchema = yup.object({
+    name: yup
+      .string().required(),
+    email: yup
+      .string('Enter your email')
+      .email('Enter a valid email')
+      .required('Email is required'),
+    password: yup
+      .string('Enter your password')
+      .min(8, 'Password should be of minimum 8 characters length')
+      .required('Password is required'),
+  });
+
+  const formik = useFormik({
+    initialValues: { name: '', email: '', password: '' },
+    validationSchema: registerSchema,
+    onSubmit: ({ name, email, password }) => {
+      dispatch(register({ name, email, password }));
+      formik.reset();
+    }
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,7 +65,7 @@ export default function RegisterForm() {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={formik.handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
@@ -61,6 +77,8 @@ export default function RegisterForm() {
                   label="Name"
                   name="name"
                   autoComplete="family-name"
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -71,6 +89,10 @@ export default function RegisterForm() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                  error={formik.touched.password && Boolean(formik.errors.email)}
+                  helperText={formik.touched.password && formik.errors.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -82,6 +104,10 @@ export default function RegisterForm() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  helperText={formik.touched.password && formik.errors.password}
                 />
               </Grid>
             </Grid>

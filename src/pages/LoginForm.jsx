@@ -16,19 +16,34 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logIn } from 'redux/Auth/AuthOperations';
+import { useFormik } from 'formik';
+ import * as yup from 'yup';
+
 
 const theme = createTheme();
 
 export default function LoginForm() {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const email = e.currentTarget.elements.email.value;
-    const password = e.currentTarget.elements.password.value;
-    dispatch(logIn({ email, password }));
-    e.currentTarget.reset();
-  };
+  const loginSchema = yup.object({
+    email: yup
+      .string('Enter your email')
+      .email('Enter a valid email')
+      .required('Email is required'),
+    password: yup
+      .string('Enter your password')
+      .min(8, 'Password should be of minimum 8 characters length')
+      .required('Password is required'),
+  });
+
+  const formik = useFormik({
+    initialValues: { email: '', password: '' },
+    validationSchema: loginSchema,
+    onSubmit: ({ email, password }) => {
+      dispatch(logIn({ email, password }));
+      formik.reset();
+    },
+  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,7 +65,7 @@ export default function LoginForm() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={formik.handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -63,6 +78,10 @@ export default function LoginForm() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
             />
             <TextField
               margin="normal"
@@ -73,6 +92,10 @@ export default function LoginForm() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

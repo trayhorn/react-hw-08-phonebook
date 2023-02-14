@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { refreshUser } from 'redux/Auth/AuthOperations';
-import { RegisterForm, ContactsView, LoginForm, Home, Layout } from './pages';
+import { RegisterForm, ContactsView, LoginForm, Layout } from './pages';
 import { RestrictedRoute } from 'RestrictedRoute';
 import PrivateRoute from 'PrivateRoute';
 
@@ -15,14 +15,12 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<p style={{ fontSize: '55px', textAlign: 'center' }}>Welcome!</p>} />
+
         <Route
           path="/login"
           element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<LoginForm />}
-            />
+            <RestrictedRoute redirectTo="/contacts" component={<LoginForm />} />
           }
         />
         <Route
@@ -37,9 +35,7 @@ export const App = () => {
         <Route
           path="/contacts"
           element={
-            <PrivateRoute
-              redirectTo="/login"
-              component={<ContactsView />} />
+            <PrivateRoute redirectTo="/login" component={<ContactsView />} />
           }
         />
       </Route>

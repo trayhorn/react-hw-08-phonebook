@@ -11,9 +11,9 @@ import UserMenu from './UserMenu';
 
 export default function Navigation() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  
+
   return (
-    <div style={{position: 'absolute', width: '100vw'}}>
+    <div>
       <Box>
         <AppBar position="static">
           <Toolbar>
