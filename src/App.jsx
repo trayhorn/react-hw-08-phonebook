@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { refreshUser } from 'redux/Auth/AuthOperations';
 import { RegisterForm, ContactsView, LoginForm, Layout } from './pages';
-import { RestrictedRoute } from 'RestrictedRoute';
-import PrivateRoute from 'PrivateRoute';
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import { PrivateRoute } from 'components/PrivateRoute';
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<p style={{ fontSize: '55px', textAlign: 'center' }}>Welcome!</p>} />
-
         <Route
           path="/login"
           element={

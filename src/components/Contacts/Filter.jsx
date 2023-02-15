@@ -16,9 +16,10 @@ export default function Filter() {
         name="filter"
         id="outlined"
         label="Filter"
-        variant="outlined"
+        variant="filled"
         size="small"
         onChange={handleFilterChange}
+        sx={{ bgcolor: 'white', borderRadius: '5px' }}
       />
     </div>
   );
