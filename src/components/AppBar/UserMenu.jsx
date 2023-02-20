@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Avatar, Menu, MenuItem } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logOut } from 'redux/Auth/AuthOperations';
 
 export default function UserMenu() {
@@ -42,7 +41,6 @@ export default function UserMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <AccountCircleIcon fontSize="large" />
       </Avatar>
       <Menu
         id="basic-menu"
