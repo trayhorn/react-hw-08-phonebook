@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
+.home-title {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+  font-size: 60px;
+  text-align: center;
+  margin-top: 250px;
+  color: white;
+}
+
+.home-title_flip {
+  animation-name: spin, depth;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
+}
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-360deg);
+  }
+}
+@keyframes depth {
+  0% {
+    text-shadow: 0 0 white;
+  }
+  25% {
+    text-shadow: 1px 0 white, 2px 0 white, 3px 0 white, 4px 0 white, 5px 0 white;
+  }
+  50% {
+    text-shadow: 0 0 white;
+  }
+  75% {
+    text-shadow: -1px 0 white, -2px 0 white, -3px 0 white, -4px 0 white,
+      -5px 0 white;
+  }
+  100% {
+    text-shadow: 0 0 white;
+  }
+}

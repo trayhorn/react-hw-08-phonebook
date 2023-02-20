@@ -10,10 +10,7 @@ export default function Contact({ id, name, number }) {
     <li className="contact-list__item">
       <span>{name}</span>
       <span>{number}</span>
-      <IconButton
-        aria-label="delete"
-        onClick={() => dispatch(deleteContact(id))}
-      >
+      <IconButton aria-label="delete" onClick={() => dispatch(deleteContact(id))}>
         <DeleteIcon />
       </IconButton>
     </li>

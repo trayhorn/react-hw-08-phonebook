@@ -5,6 +5,7 @@ import { refreshUser } from 'redux/Auth/AuthOperations';
 import { RegisterForm, ContactsView, LoginForm, Layout } from './pages';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
+import Home from 'pages/Home';
 
 
 export const App = () => {
@@ -16,7 +17,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<p style={{ fontSize: '55px', textAlign: 'center' }}>Welcome!</p>} />
+        <Route index element={<Home /> } />
         <Route
           path="/login"
           element={

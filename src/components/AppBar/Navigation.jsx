@@ -17,7 +17,7 @@ export default function Navigation() {
       <Box>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h5" component="div" sx={{ flexGrow: 1, fontWeight: '600' }}>
               Phonebook
             </Typography>
             {isLoggedIn ? <UserMenu /> : <AuthNav />}

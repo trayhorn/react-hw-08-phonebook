@@ -1,20 +1,18 @@
 @import './Layout';
+@import './Home';
 @import './ContactList';
 @import './ContactsView';
 @import './ContactModal';
 
 body {
   margin: 0;
-  font-family: serif;
+  font-family: Roboto, serif;
+  font-weight: 400;
   background-color: #efefef;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 
 .navlink {
