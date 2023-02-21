@@ -28,6 +28,15 @@ export default function Layout() {
         main: '#448AFF',
       },
     },
+    components: {
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            '&:hover': { color: '#448AFF' },
+          },
+        },
+      },
+    },
   });
 
   return (

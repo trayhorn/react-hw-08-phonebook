@@ -1,17 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchAllContacts } from 'redux/Contacts/ContactsOperations';
-import ContactList from '../components/Contacts/ContactList';
-import Filter from '../components/Contacts/Filter';
-import Form from 'components/Contacts/Form';
-import ContactsModal from 'components/Contacts/ContactsModal';
+import { ContactList, Filter, Form, ContactsModal, EditForm } from 'components/Contacts';
+import {IconButton, Tooltip} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 
 export default function ContactsView() {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditRequest, setIsEditRequest] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllContacts());
@@ -20,6 +17,9 @@ export default function ContactsView() {
   const toggleModal = () => {
     setIsModalOpen(prevState => !prevState);
   }
+  const toggleEditModal = () => {
+    setIsEditRequest(prevState => !prevState);
+  };
 
   return (
     <div className="ContactsApp">
@@ -28,9 +28,14 @@ export default function ContactsView() {
           <Form onAddContact={toggleModal} />
         </ContactsModal>
       )}
+      {isEditRequest && (
+        <ContactsModal onClose={toggleEditModal}>
+          <EditForm onSave={toggleEditModal} />
+        </ContactsModal>
+      )}
       <section className="search-header">
         <Filter />
-        <Tooltip title='Add contact'>
+        <Tooltip title="Add contact">
           <IconButton
             sx={{
               ':hover': { bgcolor: 'rgb(47, 96, 178)' },
@@ -45,7 +50,7 @@ export default function ContactsView() {
           </IconButton>
         </Tooltip>
       </section>
-      <ContactList />
+      <ContactList openEditModal={toggleEditModal} />
     </div>
   );
 }
