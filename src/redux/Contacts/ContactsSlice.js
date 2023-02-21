@@ -10,15 +10,11 @@ export const ContactsSlice = createSlice({
   initialState: {
     contacts: [],
     filter: '',
-    theme: 'light'
   },
   reducers: {
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
-    toggleTheme: (state) => {
-      state.theme = state.theme === 'light' ? 'dark' : 'light';
-    }
   },
   extraReducers: {
     [fetchAllContacts.fulfilled](state, action) {

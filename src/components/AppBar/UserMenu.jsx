@@ -23,7 +23,7 @@ export default function UserMenu() {
   };
 
   return (
-    <>
+    <div style={{display: 'flex', alignItems: 'center'}}>
       <Typography
         variant="h6"
         component="div"
@@ -60,6 +60,6 @@ export default function UserMenu() {
           Logout
         </MenuItem>
       </Menu>
-    </>
+    </div>
   );
 }
