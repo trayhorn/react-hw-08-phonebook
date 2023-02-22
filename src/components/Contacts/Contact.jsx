@@ -3,14 +3,14 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { deleteContact } from 'redux/Contacts/ContactsOperations';
-
+import { getIdToEdit } from 'redux/Contacts/ContactsSlice';
 
 export default function Contact({ id, name, number, openEditModal }) {
   const dispatch = useDispatch();
 
   const handleEditClick = (id) => {
     openEditModal()
-    console.log(id);
+    dispatch(getIdToEdit(id));
   }
 
   return (

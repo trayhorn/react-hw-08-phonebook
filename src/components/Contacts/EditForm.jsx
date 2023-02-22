@@ -1,10 +1,12 @@
 import { TextField, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { editContact } from 'redux/Contacts/ContactsOperations';
 
-export default function EditForm() {
-  const contact = useSelector(state => state.contacts.contacts)
+export default function EditForm({ onSave }) {
+  const editId = useSelector(state => state.contacts.editId);
+  const dispatch = useDispatch();
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -20,8 +22,9 @@ export default function EditForm() {
   const formik = useFormik({
     initialValues: { name: '', number: '' },
     onSubmit: ({ name, number }) => {
-      console.log(name, number);
-      console.log(contact);
+      const updatedContact = { name, number };
+      dispatch(editContact({ id: editId, updatedContact: updatedContact }));
+      onSave();
     },
   });
 
