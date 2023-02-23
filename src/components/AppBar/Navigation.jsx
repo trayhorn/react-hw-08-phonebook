@@ -9,10 +9,11 @@ import {
 import { useSelector } from 'react-redux';
 import AuthNav from './AuthNav';
 import UserMenu from './UserMenu';
+import { selectIsLoggedIn } from 'redux/Auth/AuthSelectors';
 
 
 export default function Navigation({ toggleMode, currentMode }) {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <div>

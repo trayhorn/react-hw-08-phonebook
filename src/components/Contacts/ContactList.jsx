@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
+import { selectContacts, selectFilter } from 'redux/Contacts/ContactsSelectors';
 import Contact from './Contact';
 
 export default function ContactList({ openEditModal }) {
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filter = useSelector(state => state.contacts.filter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
   if (!contacts && !filter) {
     return;

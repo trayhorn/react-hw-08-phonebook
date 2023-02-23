@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Avatar, Menu, MenuItem } from '@mui/material';
 import { logOut } from 'redux/Auth/AuthOperations';
+import { selectUserName } from 'redux/Auth/AuthSelectors';
 
 export default function UserMenu() {
-  const name = useSelector(state => state.auth.user.name);
+  const name = useSelector(selectUserName);
   const dispatch = useDispatch();
 
   const onLogOut = () => {

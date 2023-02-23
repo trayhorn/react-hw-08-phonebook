@@ -27,6 +27,7 @@ export const addcontactSchema = yup.object({
   name: yup.string('Enter the name').required('Name is required'),
   number: yup
     .string('Enter the number')
-    .min(10, 'Number should be of minimum 10 digits length')
+    .min(6, 'Number should be of minimum 6 digits length')
+    .max(10, 'Number should be of maximum 10 digits lenght')
     .required('Number is required'),
 });

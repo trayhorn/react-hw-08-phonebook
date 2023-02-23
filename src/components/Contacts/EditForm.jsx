@@ -3,10 +3,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { editContact } from 'redux/Contacts/ContactsOperations';
+import { selectEditId } from 'redux/Contacts/ContactsSelectors';
+import { selectContacts } from 'redux/Contacts/ContactsSelectors';
 
 export default function EditForm({ onSave }) {
-  const editId = useSelector(state => state.contacts.editId);
+  const editId = useSelector(selectEditId);
+  const contactToBeEdited = useSelector(selectContacts).find(
+    contact => contact.id === editId
+  );
   const dispatch = useDispatch();
+
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -20,7 +26,10 @@ export default function EditForm({ onSave }) {
   });
 
   const formik = useFormik({
-    initialValues: { name: '', number: '' },
+    initialValues: {
+      name: contactToBeEdited.name,
+      number: contactToBeEdited.number,
+    },
     onSubmit: ({ name, number }) => {
       const updatedContact = { name, number };
       dispatch(editContact({ id: editId, updatedContact: updatedContact }));
